@@ -11,19 +11,15 @@ export default function App(){
 
   return (
     <div >
-      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">
-        <Router>
+      <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen">    
           <Header />
-          
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/skillset" element={<SkillSet />} />
               <Route path="/portfolio" element={<Portfolio />} />
               <Route path="/contact" element={<Contact />} />
             </Routes>
-          
           <Footer/>
-        </Router>
       </div>
     </div>
   );
