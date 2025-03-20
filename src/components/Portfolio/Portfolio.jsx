@@ -6,6 +6,20 @@ import { Link } from 'react-router-dom';
 export default function Portfolio() {
   const projects = [
     {
+      name: 'ReactJS Shopping Cart Application',
+      description: "The ReactJS Shopping Cart Application is a simple e-commerce project built with React.js, Material UI, and Vite, allowing users to browse products, add items to the cart, update quantities, remove items, and proceed to checkout. It uses React Router for navigation, Context API for state management, and LocalStorage for cart persistence. The app features a responsive UI, real-time cart updates, and a checkout confirmation message, making it an efficient and user-friendly shopping experience. Optimized for GitHub Pages deployment, it ensures fast performance and seamless interaction.",
+      githubLink: "https://github.com/asmit137/ReactJS-Shopping-Cart-Project.git",
+      demoLink: "https://asmit137.github.io/ReactJS-Shopping-Cart-Project/",
+      projectLink: "https://asmit137.github.io/ReactJS-Shopping-Cart-Project/", 
+    },
+    {
+      name: 'Spotify Clone Web',
+      description: "This project is a Spotify Clone Website built using HTML, CSS, and JavaScript, designed to replicate the core aesthetics and functionality of Spotify's music streaming platform. It features a responsive layout with a sleek navigation bar, a dynamic homepage showcasing playlists and recommendations, and a functional music player with controls for play, pause, and skip. Interactive elements like hover effects, scrollable playlists, and category sections enhance the user experience. This project is an excellent demonstration of frontend development skills, showcasing expertise in creating engaging, user-friendly interfaces and implementing dynamic features.",
+      githubLink: "https://github.com/asmit137/Spotify-website-clone.git",
+      demoLink: "https://github.com/asmit137/Spotify-website-clone.git",
+      projectLink: "https://github.com/asmit137/Spotify-website-clone.git", 
+    },
+    {
       name: 'Netflix Home Page',
       description: "This project is a desktop-optimized clone of the Netflix home page, built using HTML, CSS, and JavaScript. It features a sticky navigation bar with interactive menu options, a hero section with a prominent banner and action buttons, and multiple horizontal carousels showcasing movie categories like Trending Now and Top Picks. The design incorporates CSS animations for smooth hover effects, responsive layout with Flexbox and Grid, and JavaScript functionality for carousel navigation and interactivity. The footer includes links and social media icons, completing a visually appealing and user-friendly interface resembling Netflix's iconic home page.",
       githubLink: 'https://github.com/asmit137/Project-Netflix-Home-Page.git',
