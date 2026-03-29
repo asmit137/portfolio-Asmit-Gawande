@@ -1,100 +1,137 @@
-import React from 'react';
-import { FaGithub } from 'react-icons/fa'; // For GitHub icon
-
-import { Link } from 'react-router-dom';
+import { Github, ExternalLink, Code2 } from 'lucide-react';
 
 export default function Portfolio() {
   const projects = [
     {
-      name: 'ReactJS Shopping Cart Application',
-      description: "The ReactJS Shopping Cart Application is a simple e-commerce project built with React.js, Material UI, and Vite, allowing users to browse products, add items to the cart, update quantities, remove items, and proceed to checkout. It uses React Router for navigation, Context API for state management, and LocalStorage for cart persistence. The app features a responsive UI, real-time cart updates, and a checkout confirmation message, making it an efficient and user-friendly shopping experience. Optimized for GitHub Pages deployment, it ensures fast performance and seamless interaction.",
+      name: 'React Shopping Cart',
+      description: 'Full-stack e-commerce cart with React, Material UI, and Context API. Features product browsing, cart management, and checkout flow with persistent state.',
+      tech: ['React', 'Material UI', 'Context API', 'LocalStorage'],
       githubLink: "https://github.com/asmit137/ReactJS-Shopping-Cart-Project.git",
       demoLink: "https://asmit137.github.io/ReactJS-Shopping-Cart-Project/",
-      projectLink: "https://asmit137.github.io/ReactJS-Shopping-Cart-Project/", 
+      color: 'from-blue-500 to-cyan-500'
     },
     {
-      name: 'Spotify Clone Web',
-      description: "This project is a Spotify Clone Website built using HTML, CSS, and JavaScript, designed to replicate the core aesthetics and functionality of Spotify's music streaming platform. It features a responsive layout with a sleek navigation bar, a dynamic homepage showcasing playlists and recommendations, and a functional music player with controls for play, pause, and skip. Interactive elements like hover effects, scrollable playlists, and category sections enhance the user experience. This project is an excellent demonstration of frontend development skills, showcasing expertise in creating engaging, user-friendly interfaces and implementing dynamic features.",
+      name: 'Spotify Clone',
+      description: 'Music streaming platform replica with HTML, CSS, and JavaScript. Features responsive layout, music player controls, and dynamic playlist navigation.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
       githubLink: "https://github.com/asmit137/Spotify-website-clone.git",
-      demoLink: "https://github.com/asmit137/Spotify-website-clone.git",
-      projectLink: "https://github.com/asmit137/Spotify-website-clone.git", 
+      demoLink: "https://asmit137.github.io/Spotify-website-clone/",
+      color: 'from-green-500 to-emerald-500'
     },
     {
       name: 'Netflix Home Page',
-      description: "This project is a desktop-optimized clone of the Netflix home page, built using HTML, CSS, and JavaScript. It features a sticky navigation bar with interactive menu options, a hero section with a prominent banner and action buttons, and multiple horizontal carousels showcasing movie categories like Trending Now and Top Picks. The design incorporates CSS animations for smooth hover effects, responsive layout with Flexbox and Grid, and JavaScript functionality for carousel navigation and interactivity. The footer includes links and social media icons, completing a visually appealing and user-friendly interface resembling Netflix's iconic home page.",
+      description: 'Desktop-optimized Netflix homepage clone with carousels, hover effects, and responsive grid layouts using CSS animations.',
+      tech: ['HTML5', 'CSS3', 'Flexbox', 'Grid', 'Animations'],
       githubLink: 'https://github.com/asmit137/Project-Netflix-Home-Page.git',
       demoLink: 'https://asmit137.github.io/Project-Netflix-Home-Page/',
-      projectLink: 'https://asmit137.github.io/Project-Netflix-Home-Page/', 
+      color: 'from-red-500 to-rose-500'
     },
     {
       name: 'BG Changer',
-      description: "This project is a simple and interactive Background Color Changer application built using React. The application allows users to dynamically change the background color of the screen with a click of a button or based on user input. It leverages React's state management to update the background color in real-time and provides a user-friendly interface to choose from a predefined palette or enter custom color codes. This project is ideal for learning React concepts like state, props, event handling, and dynamic styling, while also offering a fun and visually engaging experience.",
+      description: 'Interactive React application for dynamic background color changes with real-time state updates and custom color picker.',
+      tech: ['React', 'State Management', 'CSS-in-JS'],
       githubLink: 'https://github.com/asmit137/BGChanger.git',
       demoLink: 'https://bg-changer-tau-pied.vercel.app/',
-      projectLink: 'https://bg-changer-tau-pied.vercel.app/', 
+      color: 'from-purple-500 to-violet-500'
     },
     {
-      name: 'InternShip Assignment',
-      description: 'This project is a InternShip Assignment designed to showcase a visually appealing and responsive user interface built using HTML, CSS, and optionally JavaScript. It serves as a template for modern web applications, featuring a structured layout with a navigation bar, hero section, content areas, and a footer. The site demonstrates various web design elements such as animations, hover effects, responsive grids, and interactive components, tailored for a seamless user experience across different screen sizes. This project is ideal for presenting frontend development skills and serves as a foundation for creating fully functional websites.',
+      name: 'Internship Project',
+      description: 'Professional UI template featuring modern web design elements, animations, and responsive grids for cross-device compatibility.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive'],
       githubLink: 'https://github.com/asmit137/internshipassignment.git',
       demoLink: 'https://asmit137.github.io/internshipassignment/',
-      projectLink: 'https://asmit137.github.io/internshipassignment/', 
-    },
-    {
-      name: 'Spotify Clone Web',
-      description: "This project is a Spotify Clone Website built using HTML, CSS, and JavaScript, designed to replicate the core aesthetics and functionality of Spotify's music streaming platform. It features a responsive layout with a sleek navigation bar, a dynamic homepage showcasing playlists and recommendations, and a functional music player with controls for play, pause, and skip. Interactive elements like hover effects, scrollable playlists, and category sections enhance the user experience. This project is an excellent demonstration of frontend development skills, showcasing expertise in creating engaging, user-friendly interfaces and implementing dynamic features.",
-      githubLink: "https://github.com/asmit137/Spotify-website-clone.git",
-      demoLink: "https://github.com/asmit137/Spotify-website-clone.git",
-      projectLink: "https://github.com/asmit137/Spotify-website-clone.git", 
+      color: 'from-orange-500 to-amber-500'
     },
   ];
 
   return (
-    <section className="py-16 bg-gray-900">
-      <h2 className="text-center text-3xl sm:text-4xl font-semibold mb-10 text-white">
-        My Projects
-      </h2>
-      <div className="grid gap-6 sm:grid-cols-3 max-w-7xl mx-auto px-4">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            className="bg-gray-800 p-6 rounded-lg shadow-lg text-center transition-transform transform hover:scale-105 hover:bg-orange-500 hover:shadow-xl duration-300"
-          >
-          
-            <Link to={project.projectLink} className="block mb-4 text-white text-xl font-bold hover:text-black">
-              {project.name}
-            </Link>
+    <section id="projects" className="py-20 bg-slate-900 min-h-screen">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-orange-500/10 text-orange-400 text-sm font-medium mb-4">
+            Portfolio
+          </span>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Featured Projects
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            A collection of my recent work showcasing full-stack development skills
+          </p>
+        </div>
 
-            <p className="text-gray-400 mb-4">{project.description}</p>
-            
-           
-            <div className="flex justify-center space-x-4">
-              
-              <Link
-                to={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center text-white bg-black hover:bg-gray-800 px-4 py-2 rounded-full space-x-2 transition duration-300"
-              >
-                <FaGithub className="text-lg" />
-                <span>GitHub</span>
-              </Link>
-         
-              <Link
-                to={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center text-white bg-green-600 hover:bg-green-500 px-4 py-2 rounded-full space-x-2 transition duration-300"
-              >
-               
-                <span>Live Site</span>
-              </Link>
+        {/* Projects Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              className="group bg-slate-800/50 backdrop-blur-sm border border-white/5 rounded-2xl overflow-hidden hover:border-orange-500/30 transition-all duration-500 hover:-translate-y-2"
+            >
+              {/* Project Header with Gradient */}
+              <div className={`h-32 bg-gradient-to-r ${project.color} p-6 flex items-center justify-center`}>
+                <div className="text-center">
+                  <Code2 size={40} className="text-white/80 mx-auto mb-2" />
+                  <h3 className="text-lg font-bold text-white">{project.name}</h3>
+                </div>
+              </div>
+
+              {/* Project Content */}
+              <div className="p-6">
+                <p className="text-gray-400 text-sm mb-4 line-clamp-3">
+                  {project.description}
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tech.map((tech) => (
+                    <span
+                      key={tech}
+                      className="px-2 py-1 text-xs font-medium text-gray-300 bg-white/5 rounded-md"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-3">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 text-gray-300 hover:text-white text-sm font-medium rounded-xl transition-colors"
+                  >
+                    <Github size={16} />
+                    Code
+                  </a>
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white text-sm font-medium rounded-xl transition-all"
+                  >
+                    <ExternalLink size={16} />
+                    Live Demo
+                  </a>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+
+        {/* View More on GitHub */}
+        <div className="text-center mt-12">
+          <a
+            href="https://github.com/asmit137"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white font-medium rounded-full hover:bg-white/5 transition-colors"
+          >
+            <Github size={20} />
+            View More on GitHub
+          </a>
+        </div>
       </div>
-
     </section>
-
   );
 }
