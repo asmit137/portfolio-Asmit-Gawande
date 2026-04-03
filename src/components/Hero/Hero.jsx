@@ -1,145 +1,123 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
-  const [displayText, setDisplayText] = useState('');
-  const roles = ['Full Stack Developer', 'React Specialist', 'MERN Stack Developer'];
-  const [roleIndex, setRoleIndex] = useState(0);
-  const [isTyping, setIsTyping] = useState(true);
-  const [charIndex, setCharIndex] = useState(0);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      if (isTyping) {
-        if (charIndex < roles[roleIndex].length) {
-          setDisplayText(roles[roleIndex].slice(0, charIndex + 1));
-          setCharIndex(charIndex + 1);
-        } else {
-          setTimeout(() => setIsTyping(false), 2000);
-        }
-      } else {
-        if (charIndex > 0) {
-          setDisplayText(roles[roleIndex].slice(0, charIndex - 1));
-          setCharIndex(charIndex - 1);
-        } else {
-          setRoleIndex((roleIndex + 1) % roles.length);
-          setIsTyping(true);
-        }
-      }
-    }, isTyping ? 80 : 40);
-
-    return () => clearTimeout(timer);
-  }, [charIndex, isTyping, roleIndex, roles]);
-
-  const scrollToProjects = () => {
-    document.querySelector('#projects').scrollIntoView({ behavior: 'smooth' });
-  };
+    const handleMouseMove = (e) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 20,
+        y: (e.clientY / window.innerHeight - 0.5) * 20
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
-    <section id="home" className="min-h-screen flex items-center bg-white pt-16">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden bg-[#0a0a0a]">
+      {/* Subtle gradient background */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div 
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-3xl"
+          style={{ transform: `translate(${mousePos.x * 0.5}px, ${mousePos.y * 0.5}px)` }}
+        />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-700 text-sm font-medium mb-6">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Available for hire
-            </div>
-
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 tracking-tight mb-6">
-              Hi, I'm{' '}
-              <span className="text-blue-600">Asmit</span>
+          <div>
+            <p className="text-neutral-500 text-sm uppercase tracking-wider mb-4">Creative Developer & Designer</p>
+            
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+              Crafting<br />
+              <span className="text-blue-500">Digital</span><br />
+              Experiences.
             </h1>
 
-            <div className="text-xl sm:text-2xl text-slate-600 font-medium mb-6 h-8">
-              {displayText}
-              <span className="animate-pulse">|</span>
-            </div>
-
-            <p className="text-lg text-slate-600 leading-relaxed mb-8 max-w-lg">
-              A passionate Computer Engineering student specializing in building 
-              modern web applications with React, Node.js, and the MERN stack.
+            <p className="text-neutral-400 text-lg leading-relaxed mb-8 max-w-md">
+              Hi, I'm Asmit. I create immersive user experiences at the intersection of design, technology, and human connection.
             </p>
 
-            <div className="flex flex-wrap gap-4 mb-8">
-              <button
-                onClick={scrollToProjects}
-                className="group flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-all"
+            <div className="flex flex-wrap gap-4">
+              <button 
+                onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="px-8 py-4 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-500 transition-all"
               >
-                View Projects
-                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                View My Work
               </button>
-              <a
-                href="#contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="px-6 py-3 border-2 border-slate-200 text-slate-700 font-semibold rounded-lg hover:border-blue-600 hover:text-blue-600 transition-all"
+              
+              <button 
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="px-8 py-4 border border-white/20 text-white font-medium rounded-full hover:border-white/40 hover:bg-white/5 transition-all flex items-center gap-2"
               >
-                Get in Touch
-              </a>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <a
-                href="https://github.com/asmit137"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                aria-label="GitHub"
-              >
-                <Github size={22} />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/asmitgawandeofficial/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                aria-label="LinkedIn"
-              >
-                <Linkedin size={22} />
-              </a>
-              <a
-                href="mailto:asmitgawande137@gmail.com"
-                className="p-2.5 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all"
-                aria-label="Email"
-              >
-                <Mail size={22} />
-              </a>
+                Contact Me <ArrowRight size={18} />
+              </button>
             </div>
           </div>
 
-          {/* Right Content - Profile Placeholder */}
-          <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative">
-              <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center overflow-hidden border-4 border-white shadow-2xl">
-                <div className="text-center">
-                  <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-blue-200 flex items-center justify-center">
-                    <span className="text-5xl font-bold text-blue-600">AG</span>
+          {/* Right - Device Mockup */}
+          <div className="hidden lg:flex justify-center">
+            <div 
+              className="relative"
+              style={{ transform: `translate(${mousePos.x}px, ${mousePos.y}px)` }}
+            >
+              {/* Phone frame */}
+              <div className="w-[280px] h-[550px] bg-gradient-to-b from-neutral-800 to-neutral-900 rounded-[40px] p-3 shadow-2xl shadow-blue-500/20 border border-white/10">
+                <div className="w-full h-full bg-[#0a0a0a] rounded-[32px] overflow-hidden relative">
+                  {/* Screen content */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-blue-600/20 to-transparent" />
+                  
+                  {/* Profile Section */}
+                  <div className="absolute top-8 left-6 right-6">
+                    <div className="w-14 h-14 bg-blue-500 rounded-full mb-4 flex items-center justify-center">
+                      <span className="text-xl font-bold text-white">AG</span>
+                    </div>
+                    <h3 className="text-white font-bold text-lg">Asmit Gawande</h3>
+                    <p className="text-neutral-400 text-sm">Full Stack Developer</p>
                   </div>
-                  <p className="text-slate-500 text-sm">Add your photo here</p>
+
+                  {/* Stats Cards */}
+                  <div className="absolute top-40 left-6 right-6 space-y-3">
+                    <div className="w-full p-4 bg-white/5 rounded-xl border border-white/10">
+                      <p className="text-neutral-500 text-xs mb-1">Experience</p>
+                      <p className="text-white font-semibold">3+ Years</p>
+                    </div>
+                    <div className="w-full p-4 bg-white/5 rounded-xl border border-white/10">
+                      <p className="text-neutral-500 text-xs mb-1">Projects</p>
+                      <p className="text-white font-semibold">10+ Completed</p>
+                    </div>
+                    <div className="w-full p-4 bg-white/5 rounded-xl border border-white/10">
+                      <p className="text-neutral-500 text-xs mb-1">Location</p>
+                      <p className="text-white font-semibold">Maharashtra, India</p>
+                    </div>
+                  </div>
+                  
+                  {/* Home indicator */}
+                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-white/20 rounded-full" />
                 </div>
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-20 h-20 bg-yellow-400 rounded-full opacity-20 blur-xl" />
-              <div className="absolute -bottom-4 -left-4 w-24 h-24 bg-blue-400 rounded-full opacity-20 blur-xl" />
+              {/* Floating badge */}
+              <div className="absolute -top-4 -right-4 px-4 py-2 bg-blue-600 text-white text-sm rounded-full">
+                Available for work
+              </div>
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Stats Row */}
-        <div className="grid grid-cols-3 gap-8 mt-20 pt-12 border-t border-slate-200">
-          {[
-            { value: '10+', label: 'Projects Completed' },
-            { value: '3+', label: 'Years Experience' },
-            { value: '7.55', label: 'CGPA' },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl sm:text-4xl font-bold text-slate-900">{stat.value}</p>
-              <p className="text-sm text-slate-500 mt-1">{stat.label}</p>
-            </div>
-          ))}
+      {/* Tech Stack Row */}
+      <div className="absolute bottom-0 left-0 right-0 py-8 border-t border-white/5">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="flex items-center justify-center gap-12 flex-wrap">
+            {['React', 'Next.js', 'Node.js', 'MongoDB', 'TypeScript'].map((tech) => (
+              <span key={tech} className="text-neutral-500 text-sm font-medium hover:text-white transition-colors cursor-default">
+                {tech}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
     </section>

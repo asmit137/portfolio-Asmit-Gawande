@@ -1,170 +1,76 @@
-import { Briefcase, Calendar, MapPin, ExternalLink, CheckCircle2 } from 'lucide-react';
+import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 export default function Experience() {
+  const [ref, isVisible] = useScrollAnimation();
+
   const experiences = [
     {
-      role: 'Software Development Intern',
-      company: 'HashedBit Innovation Pvt Ltd',
-      type: 'Remote Internship',
-      duration: 'Sep 2024 - Nov 2024',
-      location: 'Remote',
-      description: 'Worked on full-stack web applications using the MERN stack, gaining hands-on experience in designing, developing, and maintaining dynamic web applications.',
-      achievements: [
-        'Built responsive front-end interfaces using React.js ensuring seamless user experience',
-        'Developed backend APIs using Node.js and Express.js with MongoDB integration',
-        'Managed project workflows using Jira boards following agile methodology',
-        'Debugged and optimized both frontend and backend environments',
-        'Collaborated effectively in a remote team environment',
-      ],
-      tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Jira', 'Git'],
-      certificate: 'https://drive.google.com/file/d/1F2n0q1oeE7r5tAAjL1y5NTG31WYdRNav/view?usp=drive_link',
-      letter: 'https://drive.google.com/file/d/1Q23SXpZXRfBjpV0-iYpcyzogA7l--4_f/view?usp=drive_link',
+      date: 'Sep 2024 - Nov 2024',
+      title: 'Software Development Intern',
+      desc: 'Started as a Software Development Intern at HashedBit Innovation, focusing on full-stack web applications using the MERN stack. Gaining hands-on experience in designing, developing, and maintaining dynamic web applications.'
     },
+    {
+      date: 'Jan 2023 - Jun 2023',
+      title: 'Frontend Developer Intern',
+      desc: 'Launched first professional experience developing responsive user interfaces using React.js and Tailwind CSS. Implemented state management solutions using Redux and Context API for complex client applications.'
+    },
+    {
+      date: 'Jan 2022 - Dec 2022',
+      title: 'Learning & Growth',
+      desc: 'Expanded skill set to include modern web technologies. Built personal projects and contributed to open source, developing expertise in React, Node.js, and modern CSS frameworks.'
+    }
   ];
 
   return (
-    <section id="experience" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+    <section id="experience" ref={ref} className="py-24 bg-[#0a0a0a]">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          {/* Header */}
+          <div className="text-center mb-20">
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Work Experience
+            </h2>
+            <p className="text-neutral-500 max-w-xl mx-auto">
+              My professional journey and career milestones.
+            </p>
+          </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium mb-4">
-            Experience
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Work Experience
-          </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            My professional journey and the skills I've gained along the way
-          </p>
-        </div>
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[2px] bg-blue-600/30 md:-translate-x-1/2" />
 
-        {/* Experience Timeline */}
-        <div className="max-w-4xl mx-auto">
-          {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="relative pl-8 md:pl-0"
-            >
-              {/* Timeline Line */}
-              <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-cyan-500 to-purple-500 hidden md:block" />
-              
-              {/* Timeline Dot */}
-              <div className="absolute left-0 md:left-1/2 top-0 w-4 h-4 -ml-2 md:-ml-2 rounded-full bg-cyan-500 border-4 border-slate-950 hidden md:block" />
+            {/* Timeline Items */}
+            <div className="space-y-16">
+              {experiences.map((exp, index) => {
+                const isRight = index % 2 === 1;
+                return (
+                  <div key={index} className="relative">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-4 md:left-1/2 top-10 -translate-x-1/2 z-10">
+                      <div className="w-4 h-4 bg-blue-600 rounded-full border-4 border-[#0a0a0a] shadow-[0_0_15px_rgba(37,99,235,0.5)]" />
+                    </div>
 
-              <div className="md:grid md:grid-cols-2 md:gap-12">
-                {/* Left Side - Date (on desktop) */}
-                <div className="hidden md:block text-right pr-12">
-                  <div className="inline-flex items-center gap-2 text-slate-400 mb-2">
-                    <Calendar size={16} />
-                    <span>{exp.duration}</span>
-                  </div>
-                </div>
-
-                {/* Right Side - Content */}
-                <div className="md:pl-12">
-                  <div className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all group">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">
-                          {exp.role}
-                        </h3>
-                        <div className="flex items-center gap-2 text-slate-400">
-                          <Briefcase size={16} />
-                          <span>{exp.company}</span>
+                    {/* Content Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-24 items-center">
+                      <div className={`pl-12 md:pl-0 ${isRight ? 'md:order-2' : 'md:text-right md:order-1'}`}>
+                        <div className={`p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all duration-500 group
+                          ${isVisible ? 'opacity-100 translate-x-0' : isRight ? 'opacity-0 translate-x-12' : 'opacity-0 -translate-x-12'}`}
+                          style={{ transitionDelay: `${index * 200}ms` }}
+                        >
+                          <span className="text-blue-400 text-sm font-bold tracking-widest uppercase">{exp.date}</span>
+                          <h3 className="text-2xl font-bold text-white mt-2 mb-3 group-hover:text-blue-400 transition-colors">{exp.title}</h3>
+                          <p className="text-neutral-400 text-base leading-relaxed">{exp.desc}</p>
                         </div>
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-xs font-medium">
-                        {exp.type}
-                      </span>
-                    </div>
 
-                    {/* Meta Info - Mobile */}
-                    <div className="md:hidden flex items-center gap-4 text-sm text-slate-500 mb-4">
-                      <span className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        {exp.duration}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin size={14} />
-                        {exp.location}
-                      </span>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-slate-400 mb-4">{exp.description}</p>
-
-                    {/* Achievements */}
-                    <ul className="space-y-2 mb-4">
-                      {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-slate-400">
-                          <CheckCircle2 size={16} className="text-cyan-400 mt-0.5 flex-shrink-0" />
-                          <span>{achievement}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* Tech Stack */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {exp.tech.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 rounded-full bg-white/5 text-slate-300 text-xs border border-white/10"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Links */}
-                    <div className="flex gap-3">
-                      <a
-                        href={exp.letter}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-purple-500/10 text-purple-400 text-sm font-medium hover:bg-purple-500/20 transition-colors"
-                      >
-                        <ExternalLink size={14} />
-                        Experience Letter
-                      </a>
-                      <a
-                        href={exp.certificate}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center gap-2 px-4 py-2 rounded-lg bg-cyan-500/10 text-cyan-400 text-sm font-medium hover:bg-cyan-500/20 transition-colors"
-                      >
-                        <ExternalLink size={14} />
-                        Certificate
-                      </a>
+                      {/* Spacer for other side */}
+                      <div className={`hidden md:block ${isRight ? 'md:order-1' : 'md:order-2'}`} />
                     </div>
                   </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
-          ))}
-        </div>
-
-        {/* Open to Opportunities */}
-        <div className="mt-16 text-center">
-          <div className="inline-block p-6 rounded-2xl bg-gradient-to-r from-cyan-500/10 to-purple-500/10 border border-white/10">
-            <h3 className="text-xl font-semibold text-white mb-2">Open to Opportunities</h3>
-            <p className="text-slate-400 mb-4">
-              Actively seeking full-time Software Development roles
-            </p>
-            <a
-              href="#contact"
-              onClick={(e) => {
-                e.preventDefault();
-                document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-purple-500 text-white font-semibold rounded-full hover:shadow-lg hover:shadow-cyan-500/25 transition-all"
-            >
-              Hire Me
-            </a>
           </div>
         </div>
       </div>

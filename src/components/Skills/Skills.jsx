@@ -1,126 +1,82 @@
-import { 
-  FaReact, FaNodeJs, FaDatabase, FaHtml5, FaCss3Alt, 
-  FaGitAlt, FaJava, FaServer, FaCode 
-} from "react-icons/fa";
-import { 
-  SiTailwindcss, SiJavascript, SiPython, SiMysql, 
-  SiMongodb, SiExpress, SiVite, SiJirasoftware, SiTypescript 
-} from "react-icons/si";
+import useScrollAnimation from '../../hooks/useScrollAnimation';
 
 export default function Skills() {
-  const skillCategories = [
-    {
-      title: "Frontend",
-      icon: FaCode,
-      color: "from-cyan-400 to-blue-500",
-      skills: [
-        { name: "React.js", icon: FaReact, level: "Advanced" },
-        { name: "JavaScript", icon: SiJavascript, level: "Advanced" },
-        { name: "TypeScript", icon: SiTypescript, level: "Intermediate" },
-        { name: "HTML5", icon: FaHtml5, level: "Advanced" },
-        { name: "CSS3", icon: FaCss3Alt, level: "Advanced" },
-        { name: "Tailwind CSS", icon: SiTailwindcss, level: "Advanced" },
-      ]
-    },
-    {
-      title: "Backend",
-      icon: FaServer,
-      color: "from-purple-400 to-pink-500",
-      skills: [
-        { name: "Node.js", icon: FaNodeJs, level: "Advanced" },
-        { name: "Express.js", icon: SiExpress, level: "Advanced" },
-        { name: "Java", icon: FaJava, level: "Intermediate" },
-        { name: "Python", icon: SiPython, level: "Intermediate" },
-      ]
-    },
-    {
-      title: "Database & Tools",
-      icon: FaDatabase,
-      color: "from-green-400 to-emerald-500",
-      skills: [
-        { name: "MongoDB", icon: SiMongodb, level: "Advanced" },
-        { name: "MySQL", icon: SiMysql, level: "Intermediate" },
-        { name: "Git", icon: FaGitAlt, level: "Advanced" },
-        { name: "GitHub", icon: FaCode, level: "Advanced" },
-        { name: "Jira", icon: SiJirasoftware, level: "Intermediate" },
-        { name: "Vite", icon: SiVite, level: "Advanced" },
-      ]
-    }
+  const [ref, isVisible] = useScrollAnimation();
+
+  const row1 = [
+    { name: 'React', slug: 'react' },
+    { name: 'JavaScript', slug: 'javascript' },
+    { name: 'TypeScript', slug: 'typescript' },
+    { name: 'Tailwind CSS', slug: 'tailwindcss' },
+    { name: 'HTML5', slug: 'html5' },
+    { name: 'CSS3', slug: 'css' },
+    { name: 'Node.js', slug: 'nodedotjs' },
+    { name: 'Vite', slug: 'vite' }
   ];
 
-  return (
-    <section id="skills" className="py-24 bg-slate-950 relative overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
+  const row2 = [
+    { name: 'MongoDB', slug: 'mongodb' },
+    { name: 'MySQL', slug: 'mysql' },
+    { name: 'Express.js', slug: 'express' },
+    { name: 'Python', slug: 'python' },
+    { name: 'Java', slug: 'openjdk' },
+    { name: 'Git', slug: 'git' },
+    { name: 'GitHub', slug: 'github' },
+    { name: 'Jira', slug: 'jira' }
+  ];
+
+  const TechCard = ({ tech }) => (
+    <div className="flex items-center gap-4 px-8 py-5 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[2rem] hover:bg-white/10 hover:border-blue-500/50 hover:scale-105 active:scale-95 transition-all duration-300 group cursor-default">
+      <div className="relative flex-shrink-0">
+        <div className="absolute -inset-2 bg-white/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity" />
+        <img 
+          src={`https://cdn.simpleicons.org/${tech.slug}/eee`} 
+          alt={tech.name} 
+          className="w-8 h-8 relative z-10 object-contain" 
+        />
       </div>
+      <span className="text-white font-black text-lg tracking-tight whitespace-nowrap">{tech.name}</span>
+    </div>
+  );
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm font-medium mb-4">
-            Skills
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Technologies & Tools
-          </h2>
-          <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-            My technical arsenal for building modern, scalable applications
-          </p>
-        </div>
+  return (
+    <section id="skills" ref={ref} className="py-32 relative overflow-hidden bg-[#050505]">
+      {/* Background Decor */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[600px] bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
+      
+      <div className="relative z-10">
+        <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <div className="text-center mb-24 px-6">
+            <span className="px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-bold text-xs tracking-widest uppercase mb-6 inline-block">
+              Expertise
+            </span>
+            <h2 className="text-6xl md:text-7xl font-black text-white leading-tight">My Tech Stack</h2>
+          </div>
 
-        {/* Skills Grid */}
-        <div className="grid gap-8 lg:grid-cols-3">
-          {skillCategories.map((category, idx) => (
-            <div 
-              key={idx}
-              className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 transition-all"
-            >
-              {/* Category Header */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className={`p-3 rounded-xl bg-gradient-to-r ${category.color}`}>
-                  <category.icon className="text-white" size={24} />
-                </div>
-                <h3 className="text-xl font-bold text-white">{category.title}</h3>
-              </div>
-
-              {/* Skills List */}
-              <div className="space-y-3">
-                {category.skills.map((skill, skillIdx) => (
-                  <div 
-                    key={skillIdx}
-                    className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-all group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <skill.icon className="text-slate-400 group-hover:text-cyan-400 transition-colors" size={20} />
-                      <span className="text-slate-300 font-medium">{skill.name}</span>
-                    </div>
-                    <span className="text-xs text-slate-500 px-2 py-1 rounded-full bg-white/5">
-                      {skill.level}
-                    </span>
-                  </div>
+          <div className="flex flex-col gap-10 pause-hover px-4 md:px-8 lg:px-12 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+            {/* Row 1 - Forward */}
+            <div className="flex overflow-hidden group">
+              <div className="flex gap-10 animate-scroll py-4">
+                {[...row1, ...row1, ...row1].map((tech, i) => (
+                  <TechCard key={`r1-${i}`} tech={tech} />
                 ))}
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Summary Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          {[
-            { value: "15+", label: "Technologies" },
-            { value: "5+", label: "Frontend Skills" },
-            { value: "4+", label: "Backend Skills" },
-            { value: "6+", label: "Tools & DBs" },
-          ].map((stat, idx) => (
-            <div key={idx} className="text-center p-6 rounded-xl bg-white/5 border border-white/10">
-              <p className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent mb-1">
-                {stat.value}
-              </p>
-              <p className="text-slate-400 text-sm">{stat.label}</p>
+            {/* Row 2 - Reverse */}
+            <div className="flex overflow-hidden group">
+              <div className="flex gap-10 animate-scroll-reverse py-4">
+                {[...row2, ...row2, ...row2].map((tech, i) => (
+                  <TechCard key={`r2-${i}`} tech={tech} />
+                ))}
+              </div>
             </div>
-          ))}
+          </div>
+          
+          {/* Subtle bottom fade */}
+          <div className="mt-24 text-center">
+            <p className="text-neutral-500 font-medium tracking-wide">Always learning and exploring new technologies.</p>
+          </div>
         </div>
       </div>
     </section>
