@@ -24,8 +24,8 @@ import SkillsEditor from './components/SkillsEditor';
 import ServicesEditor from './components/ServicesEditor';
 import StatsEditor from './components/StatsEditor';
 
-// API base URL
-const API_URL = 'http://localhost:5000/api';
+// API base URL - using Vite environment variable with fallback
+const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000/api';
 
 axios.defaults.baseURL = API_URL;
 
